@@ -45,18 +45,20 @@ void serve(Node* &head, Node* &tail) {
     delete temp;
 }
 
-void enqueuMuffin(deque<string &q) {
+void enqueueMuffin(deque<string> &q) {
     string customer = names[rand() % 5] + string(" (") +
                       muffins[rand() % 4] + ")";
-    q.push-back(customer);
-    cout << customer << " joined the miffin queue"
+    q.push_back(customer);
+    cout << customer << " joined the miffin queue\n";
 }
 
 void serveMuffin(deque<string> &q) {
     if(q.empty()) {
-        cout << "no muffin customer to serve";
+        cout << "no muffin customer to serve\n";
+        return;
     }
-    return;
+    cout << "Serving muffin to " << q.front() << endl;
+    q.pop_front();
 }
 
 int main() {
@@ -64,17 +66,21 @@ int main() {
 
     Node* head = nullptr;
     Node* tail = nullptr;
+    deque<string> muffinQ;
 
     for (int i = 0; i < 3; i++) {
         enqueue(head, tail);
+        enqueueMuffin(muffinQ);
     }
 
     for (int round = 1; round <= 10; round++) {
         cout << "\nRound " << round << endl;
+
         serve(head, tail);
-        if (rand() % 2 == 0) {
-            enqueue(head, tail);
-        }
+        serveMuffin(muffinQ);
+
+        if (rand() % 2 == 0) enqueue(head, tail);
+        if (rand() % 2 == 0) enqueueMuffin(muffinQ);
     }
 
     return 0;
