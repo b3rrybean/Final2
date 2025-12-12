@@ -29,8 +29,18 @@ void enqueue(Node* &head, Node* &tail) {
 }
 
 void serve(Node* &head, Node* &tail) {
+    if (head == nullptr) {
+        cout << "No customer to serve\n";
+        return;
+    }
 
-    
+    cout << "Serving " << head->name
+         << " (" << head->drink << ")\n";
+
+    Node* temp = head;
+    head = head->next;
+    if (head == nullptr) tail = nullptr;
+    delete temp;
 }
 
 int main() {
@@ -39,19 +49,17 @@ int main() {
     Node* head = nullptr;
     Node* tail = nullptr;
 
+    for (int i = 0; i < 3; i++) {
+        enqueue(head, tail);
+    }
+
     for (int round = 1; round <= 10; round++) {
         cout << "\nRound " << round << endl;
-
-        if (head != nullptr) {
-            cout << "Serving " << head->name
-                 << " (" << head->drink << ")\n";
-            Node* temp = head;
-            head = head->next;
-            if (head == nullptr) tail = nullptr;
-            delete temp;
-        } else {
-            cout << "No customer to serve\n";
+        serve(head, tail);
+        if (rand() % 2 == 0) {
+            enqueue(head, tail);
         }
-
     }
+
+    return 0;
 }
