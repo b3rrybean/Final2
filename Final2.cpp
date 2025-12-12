@@ -19,16 +19,25 @@ int main() {
     Node* head = nullptr;
     Node* tail = nullptr;
 
-    for (int i = 0; i < 3, i++) {
+    for (int i = 0; i < 3; i++) {
         Node* n = new Node;
         n->name = names[rand() % 5];
         n->drink = drinks[rand() % 3];
-        n->next = head;
-        head = n;
+        n->next = nullptr;
+        
+        if (tail == nullptr) {
+            head = tail = n;
+        } else {
+            tail->next = n;
+            tail = n;
+        }
     }
 
     if (head != nullptr) {
-        cout << "Serving " << head-name << " (" << head->drink << ")\n";
+        cout << "Serving " << head->name << " (" << head->drink << ")\n";
+        Node* temp = head;
         head = head->next;
+        if (head == nullptr) tail = nullptr;
+        delete temp;
     }
 }
