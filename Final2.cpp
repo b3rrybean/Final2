@@ -33,11 +33,19 @@ int main() {
         }
     }
 
-    if (head != nullptr) {
-        cout << "Serving " << head->name << " (" << head->drink << ")\n";
-        Node* temp = head;
-        head = head->next;
-        if (head == nullptr) tail = nullptr;
-        delete temp;
+    for (int round = 1; round <= 10; round++) {
+        cout << "\nRound " << round << endl;
+
+        if (head != nullptr) {
+            cout << "Serving " << head->name
+                 << " ()" << head->drink << ")\n";
+            Node*temp = head;
+            head = head->next;
+            if (head == nullptr) tail = nullptr;
+            delete temp;
+        } else {
+            cout << "No customer to serve\n";
+        }
+        
     }
 }
