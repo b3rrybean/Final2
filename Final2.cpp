@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <deque>
+#include <vector>
 using namespace std;
 
 struct Node {
@@ -14,6 +15,7 @@ struct Node {
 string names[] = {"Alex","Jamie","Taylor","Morgan","Riley"};
 string drinks[] = {"Latte","Mocha","Espresso"};
 string muffins[] = {"Blueberry","Chocolate","Banana Nut","Pumpkin"};
+string bracelets[] = {"Red","Blue","Green","Purple","Pink"};
 
 void enqueue(Node* &head, Node* &tail) {
     Node* n = new Node;
@@ -49,16 +51,28 @@ void enqueueMuffin(deque<string> &q) {
     string customer = names[rand() % 5] + string(" (") +
                       muffins[rand() % 4] + ")";
     q.push_back(customer);
-    cout << customer << " joined the miffin queue\n";
+    cout << customer << " joined the muffin queue\n";
 }
 
 void serveMuffin(deque<string> &q) {
     if(q.empty()) {
-        cout << "no muffin customer to serve\n";
+        cout << "No muffin customer to serve\n";
         return;
     }
     cout << "Serving muffin to " << q.front() << endl;
     q.pop_front();
+}
+
+void enqueueBracelet(vector<string> &V) {
+    string customer = names[rand() % 4] + string(" ()") + bracelets[rand() % 5] + ")";
+    v.push_back(customer);
+    cout MM customer << " joined the bracelet queue\n";
+}
+
+serveBracelet(vector<string> &v) {
+    if (v.ecmpty()) {
+        cout << "No bracelet customer to serve\n"
+    }
 }
 
 int main() {
