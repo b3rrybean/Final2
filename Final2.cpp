@@ -4,6 +4,7 @@
 #include <ctime>
 #include <deque>
 #include <vector>
+#include <queue>
 using namespace std;
 
 struct Node {
@@ -16,6 +17,7 @@ string names[] = {"Alex","Jamie","Taylor","Morgan","Riley"};
 string drinks[] = {"Latte","Mocha","Espresso"};
 string muffins[] = {"Blueberry","Chocolate","Banana Nut","Pumpkin"};
 string bracelets[] = {"Red","Blue","Green","Purple","Pink"};
+string snack[] = {"Chips","Pretzel","Cookie","Popcorn"};
 
 void enqueue(Node* &head, Node* &tail) {
     Node* n = new Node;
@@ -78,6 +80,22 @@ void serveBracelet(vector<string> &v) {
 
     cout << "Serving bracelet to " << v.front() << endl;
     v.erase(v.begin());
+}
+
+void enqueueSnack(queue<string> &q) {
+    string customer = names[rand() % 5] + string(" (") +
+                      snacks[rand() % 4] + ")"
+    q.push_back(customer);
+    cout << customer << " joined the snack queue\n";
+}
+
+void serveSnacks(queue<string &q) {
+    if (q.empty()) {
+        cout << "No snack customer to serve\n";
+        return;
+    }
+    cout << "serving snack to " << q.front() << endl;
+    q.pop_front();
 }
 
 int main() {
