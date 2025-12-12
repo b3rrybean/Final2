@@ -115,16 +115,22 @@ int main() {
     }
 
     for (int round = 1; round <= 10; round++) {
-        cout << "\nRound " << round << endl;
+        cout << "\n===== Round " << round << " =====\n";
 
+        cout << "[Coffee Booth]\n";
         serve(head, tail);
-        serveMuffin(muffinQ);
-        serveBracelet(braceletQ);
-        serveSnack(snackQ);
-
         if (rand() % 2 == 0) enqueue(head, tail);
+
+        cout << "[Muffin Booth]\n";
+        serveMuffin(muffinQ);
         if (rand() % 2 == 0) enqueueMuffin(muffinQ);
+
+        cout << "[Bracelet Booth]\n";
+        serveBracelet(braceletQ);
         if (rand() % 2 == 0) enqueueBracelet(braceletQ);
+
+        cout << "[Snack Booth]\n";
+        serveSnack(snackQ);
         if (rand() % 2 == 0) enqueueSnack(snackQ);
     }
 
