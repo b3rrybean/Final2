@@ -17,7 +17,7 @@ string names[] = {"Alex","Jamie","Taylor","Morgan","Riley"};
 string drinks[] = {"Latte","Mocha","Espresso"};
 string muffins[] = {"Blueberry","Chocolate","Banana Nut","Pumpkin"};
 string bracelets[] = {"Red","Blue","Green","Purple","Pink"};
-string snack[] = {"Chips","Pretzel","Cookie","Popcorn"};
+string snacks[] = {"Chips","Pretzel","Cookie","Popcorn"};
 
 void enqueue(Node* &head, Node* &tail) {
     Node* n = new Node;
@@ -84,18 +84,18 @@ void serveBracelet(vector<string> &v) {
 
 void enqueueSnack(queue<string> &q) {
     string customer = names[rand() % 5] + string(" (") +
-                      snacks[rand() % 4] + ")"
-    q.push_back(customer);
+                      snacks[rand() % 4] + ")";
+    q.push(customer);
     cout << customer << " joined the snack queue\n";
 }
 
-void serveSnacks(queue<string &q) {
+void serveSnack(queue<string> &q) {
     if (q.empty()) {
         cout << "No snack customer to serve\n";
         return;
     }
-    cout << "serving snack to " << q.front() << endl;
-    q.pop_front();
+    cout << "Serving snack to " << q.front() << endl;
+    q.pop();
 }
 
 int main() {
@@ -105,11 +105,13 @@ int main() {
     Node* tail = nullptr;
     deque<string> muffinQ;
     vector<string> braceletQ;
+    queue<string> snackQ;
 
     for (int i = 0; i < 3; i++) {
         enqueue(head, tail);
         enqueueMuffin(muffinQ);
         enqueueBracelet(braceletQ);
+        enqueueSnack(snackQ);
     }
 
     for (int round = 1; round <= 10; round++) {
@@ -118,10 +120,12 @@ int main() {
         serve(head, tail);
         serveMuffin(muffinQ);
         serveBracelet(braceletQ);
+        serveSnack(snackQ);
 
         if (rand() % 2 == 0) enqueue(head, tail);
         if (rand() % 2 == 0) enqueueMuffin(muffinQ);
         if (rand() % 2 == 0) enqueueBracelet(braceletQ);
+        if (rand() % 2 == 0) enqueueSnack(snackQ);
     }
 
     return 0;
