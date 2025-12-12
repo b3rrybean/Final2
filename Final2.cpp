@@ -63,16 +63,21 @@ void serveMuffin(deque<string> &q) {
     q.pop_front();
 }
 
-void enqueueBracelet(vector<string> &V) {
-    string customer = names[rand() % 4] + string(" ()") + bracelets[rand() % 5] + ")";
+void enqueueBracelet(vector<string> &v) {
+    string customer = names[rand() % 5] + string(" (") +
+                      bracelets[rand() % 5] + ")";
     v.push_back(customer);
-    cout MM customer << " joined the bracelet queue\n";
+    cout << customer << " joined the bracelet queue\n";
 }
 
-serveBracelet(vector<string> &v) {
-    if (v.ecmpty()) {
-        cout << "No bracelet customer to serve\n"
+void serveBracelet(vector<string> &v) {
+    if (v.empty()) {
+        cout << "No bracelet customer to serve\n";
+        return;
     }
+
+    cout << "Serving bracelet to " << v.front() << endl;
+    v.erase(v.begin());
 }
 
 int main() {
@@ -81,10 +86,12 @@ int main() {
     Node* head = nullptr;
     Node* tail = nullptr;
     deque<string> muffinQ;
+    vector<string> braceletQ;
 
     for (int i = 0; i < 3; i++) {
         enqueue(head, tail);
         enqueueMuffin(muffinQ);
+        enqueueBracelet(braceletQ);
     }
 
     for (int round = 1; round <= 10; round++) {
@@ -92,9 +99,11 @@ int main() {
 
         serve(head, tail);
         serveMuffin(muffinQ);
+        serveBracelet(braceletQ);
 
         if (rand() % 2 == 0) enqueue(head, tail);
         if (rand() % 2 == 0) enqueueMuffin(muffinQ);
+        if (rand() % 2 == 0) enqueueBracelet(braceletQ);
     }
 
     return 0;
