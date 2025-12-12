@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <deque>
 using namespace std;
 
 struct Node {
@@ -12,6 +13,7 @@ struct Node {
 
 string names[] = {"Alex","Jamie","Taylor","Morgan","Riley"};
 string drinks[] = {"Latte","Mocha","Espresso"};
+string muffins[] = {"Blueberry","Chocolate","Banana Nut","Pumpkin"};
 
 void enqueue(Node* &head, Node* &tail) {
     Node* n = new Node;
@@ -34,13 +36,27 @@ void serve(Node* &head, Node* &tail) {
         return;
     }
 
-    cout << "Serving " << head->name
+    cout << "Serving coffee to " << head->name
          << " (" << head->drink << ")\n";
 
     Node* temp = head;
     head = head->next;
     if (head == nullptr) tail = nullptr;
     delete temp;
+}
+
+void enqueuMuffin(deque<string &q) {
+    string customer = names[rand() % 5] + string(" (") +
+                      muffins[rand() % 4] + ")";
+    q.push-back(customer);
+    cout << customer << " joined the miffin queue"
+}
+
+void serveMuffin(deque<string> &q) {
+    if(q.empty()) {
+        cout << "no muffin customer to serve";
+    }
+    return;
 }
 
 int main() {
